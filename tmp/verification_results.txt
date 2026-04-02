@@ -1,0 +1,69 @@
+============================================================
+TEST CASE 1: Morning + Low Congestion
+Input: {'time_of_day': 'morning', 'day_type': 'weekday', 'congestion': 'low'}
+
+--- Dynamic Commute Adjustment Debug ---
+Mode: CAR
+  Base Time: 28.7 min
+  Total Adjustment: -4.5 min
+  FINAL ADJUSTED: 24.2 min
+Mode: METRO
+  Base Time: 25.6 min
+  Total Adjustment: 0.5 min
+  FINAL ADJUSTED: 26.1 min
+Mode: BUS
+  Base Time: 29.8 min
+  Total Adjustment: 4.3 min
+  FINAL ADJUSTED: 34.1 min
+----------------------------------------
+
+Final Outcome -> Recommended Mode: CAR
+Final Times -> {'car_time': 24.2, 'metro_time': 26.1, 'bus_time': 34.1}
+============================================================
+
+============================================================
+TEST CASE 2: Afternoon + Medium Congestion
+Input: {'time_of_day': 'afternoon', 'day_type': 'weekday', 'congestion': 'medium'}
+
+--- Dynamic Commute Adjustment Debug ---
+Mode: CAR
+  Base Time: 32.6 min
+  Total Adjustment: 18.8 min
+  FINAL ADJUSTED: 51.4 min
+Mode: METRO
+  Base Time: 25.6 min
+  Total Adjustment: 1.3 min
+  FINAL ADJUSTED: 26.9 min
+Mode: BUS
+  Base Time: 36.1 min
+  Total Adjustment: 15.4 min
+  FINAL ADJUSTED: 51.5 min
+----------------------------------------
+
+Final Outcome -> Recommended Mode: METRO
+Final Times -> {'car_time': 51.4, 'metro_time': 26.9, 'bus_time': 51.5}
+============================================================
+
+============================================================
+TEST CASE 3: Evening + High Congestion
+Input: {'time_of_day': 'evening', 'day_type': 'weekday', 'congestion': 'high'}
+
+--- Dynamic Commute Adjustment Debug ---
+Mode: CAR
+  Base Time: 47.0 min
+  Total Adjustment: 99.1 min
+  FINAL ADJUSTED: 146.1 min
+Mode: METRO
+  Base Time: 32.6 min
+  Total Adjustment: 2.8 min
+  FINAL ADJUSTED: 35.4 min
+Mode: BUS
+  Base Time: 54.3 min
+  Total Adjustment: 74.0 min
+  FINAL ADJUSTED: 128.3 min
+----------------------------------------
+
+Final Outcome -> Recommended Mode: METRO
+Final Times -> {'car_time': 146.1, 'metro_time': 35.4, 'bus_time': 128.3}
+============================================================
+
