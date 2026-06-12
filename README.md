@@ -6,12 +6,23 @@ A sophisticated, AI-powered commute recommendation system designed to optimize u
 
 ## 🌟 Key Features
 
--   **🤖 Multi-Modal Predictions**: Forecasts travel times for **Bus**, **Metro**, **Cab**, and **Two-Wheeler**.
--   **💡 Intelligent Recommendations**: Automatically suggests the fastest mode of transport for your specific journey.
--   **🔍 Explainable AI (XAI)**: Provides clear, human-readable explanations for why a particular mode was recommended.
+-   **🤖 Multi-Modal Predictions**: Forecasts travel times for **Bus**, **Metro**, **Cab**, and **Two-Wheeler** simultaneously.
+-   **⚙️ Hybrid Pattern-Aware Adjustments**: Combines raw Machine Learning predictions with real-world heuristics (e.g. Metro immunity to traffic) for extreme accuracy.
+-   **🔍 Explainable AI (XAI)**: Provides clear, human-readable explanations for why a particular mode was recommended (e.g. "Metro saves you 15 minutes by bypassing 80% road congestion").
 -   **🗺️ Interactive Mapping**: Visualizes routes and areas using an integrated Leaflet map interface.
 -   **📈 Feedback Loop**: A built-in feedback system to collect real-world data and improve prediction accuracy over time.
 -   **🏙️ Bangalore-Centric**: Pre-configured with major hubs like Indiranagar, Whitefield, Koramangala, and more.
+
+---
+
+## 📊 Data Science & Visual Analytics
+
+This project includes deep visual analytics for presentations and exploratory data analysis. The `backend/ml/generate_plots.py` script utilizes the trained Random Forest models and traffic datasets to produce:
+- **Feature Importance**: Analyzes which variables (Distance, Time of Day, Congestion) drive prediction accuracy.
+- **The Peak Hour Effect**: Illustrates the impact of morning and evening rush hours on different transport modes.
+- **Congestion Vulnerability**: Compares the variance of car travel times vs metro travel times under heavy traffic loads.
+
+Plots are automatically generated and saved to the `notebooks/presentation_plots/` directory.
 
 ---
 

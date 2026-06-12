@@ -380,10 +380,17 @@ def get_route_time_and_distance(source: str, destination: str, time_of_day: str 
 
     # Car time: prefer real-time Ola estimate, else speed-based
     if car_time_ola is not None:
-        # User goal: Koramangala-Whitefield (~17km) Car ~55m
-        # If Ola gives something else, we might need a slight "calibrator" factor
-        # based on Bangalore's unique peak traffic density.
-        car_time = car_time_ola 
+        # Apply Time of Day simulation multiplier to live traffic
+        # This ensures the demo feels dynamic and reacts to user input
+        multiplier = 1.0
+        if tod == "morning":
+            multiplier = 1.25  # Morning peak traffic
+        elif tod == "afternoon":
+            multiplier = 0.90  # Lighter afternoon traffic
+        elif tod == "evening":
+            multiplier = 1.40  # Heavy evening peak traffic
+            
+        car_time = round(car_time_ola * multiplier, 1)
     else:
         car_speed = SPEED_PROFILES["car"][tod]
         car_time = round((road_dist / car_speed) * 60, 1)
