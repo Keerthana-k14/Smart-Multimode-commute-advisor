@@ -1,0 +1,20 @@
+[
+  {"id": "whitefield", "name": "Whitefield (Kadugodi)", "line": "Purple", "lat": 12.9961, "lon": 77.7612},
+  {"id": "kadugodi_tree_park", "name": "Kadugodi Tree Park", "line": "Purple", "lat": 12.9935, "lon": 77.7525},
+  {"id": "itpl", "name": "ITPL", "line": "Purple", "lat": 12.9892, "lon": 77.7415},
+  {"id": "hopefarm", "name": "Hopefarm Channasandra", "line": "Purple", "lat": 12.9902, "lon": 77.7475},
+  {"id": "kr_puram", "name": "KR Puram", "line": "Purple", "lat": 13.0016, "lon": 77.6751},
+  {"id": "indiranagar", "name": "Indiranagar", "line": "Purple", "lat": 12.9784, "lon": 77.6387},
+  {"id": "halasuru", "name": "Halasuru", "line": "Purple", "lat": 12.9782, "lon": 77.6267},
+  {"id": "mg_road", "name": "MG Road", "line": "Purple", "lat": 12.9755, "lon": 77.6068},
+  {"id": "majestic", "name": "Nadaprabhu Kempegowda Stn (Majestic)", "line": "Interchange", "lat": 12.9757, "lon": 77.5728},
+  {"id": "yeshwanthpur", "name": "Yeshwanthpur", "line": "Green", "lat": 13.0232, "lon": 77.5501},
+  {"id": "rajajinagar", "name": "Rajajinagar", "line": "Green", "lat": 12.9982, "lon": 77.5530},
+  {"id": "jayanagar", "name": "Jayanagar", "line": "Green", "lat": 12.9298, "lon": 77.5800},
+  {"id": "jp_nagar", "name": "JP Nagar", "line": "Green", "lat": 12.9073, "lon": 77.5801},
+  {"id": "banashankari", "name": "Banashankari", "line": "Green", "lat": 12.9152, "lon": 77.5735},
+  {"id": "silk_board", "name": "Central Silk Board", "line": "Yellow", "lat": 12.9177, "lon": 77.6238},
+  {"id": "electronic_city", "name": "Electronic City", "line": "Yellow", "lat": 12.8452, "lon": 77.6601},
+  {"id": "bommanahalli", "name": "Bommanahalli", "line": "Yellow", "lat": 12.9030, "lon": 77.6183},
+  {"id": "hsr_layout", "name": "HSR Layout", "line": "Yellow", "lat": 12.9125, "lon": 77.6385}
+]

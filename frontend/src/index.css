@@ -490,7 +490,7 @@ body {
 /* Mode tiles */
 .mode-compare {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 10px;
 }
 
@@ -498,10 +498,16 @@ body {
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
-  padding: 14px 10px;
+  padding: 18px 12px;
   text-align: center;
   position: relative;
   transition: border-color 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  min-height: 160px;
 }
 
 .mode-tile-best { transform: scale(1.03); background: rgba(59,130,246,0.05); }
@@ -535,7 +541,50 @@ body {
   letter-spacing: 0.05em;
 }
 
-/* ── MAP CARD ── */
+/* ── INTERACTIVE OLA MAP ── */
+.interactive-map {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  margin-top: 10px;
+}
+
+.map-header {
+  padding: 12px 20px;
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.map-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.map-loc {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.map-loc .src { color: #10b981; }
+.map-loc .dst { color: #f43f5e; }
+.map-loc .sep { color: var(--muted); opacity: 0.5; }
+
+.ola-map-container {
+  background: #f1f5f9; /* Fallback before map loads */
+}
+
+/* ── MAP CARD (Legacy/Fallback) ── */
 .map-card {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -897,6 +946,139 @@ body {
 
 .feedback-submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 .feedback-err { font-size: 0.78rem; color: #fc5c65; margin-top: 4px; }
+
+/* ── DISTANCE BREAKDOWN CARD ── */
+.distance-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  animation: fadeUp 0.4s ease 0.1s both;
+}
+
+.distance-card-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(59,130,246,0.04), rgba(16,185,129,0.04));
+}
+
+.distance-card-icon { font-size: 1.1rem; }
+
+.distance-card-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+.distance-card-body { padding: 16px 20px; }
+
+.distance-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.distance-table th {
+  text-align: left;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  font-weight: 600;
+}
+
+.distance-table td {
+  padding: 12px 10px;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+
+.distance-table tr:last-child td { border-bottom: none; }
+
+.distance-row-best {
+  background: rgba(59,130,246,0.05);
+}
+
+.distance-row-best td { font-weight: 600; }
+
+.distance-mode-icon {
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+.distance-time-cell {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.distance-best-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 0.04em;
+}
+
+.distance-not-viable {
+  font-size: 0.72rem;
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.distance-metro-detail {
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: rgba(59,130,246,0.06);
+  border: 1px solid rgba(59,130,246,0.12);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+/* ── MODE TILE DISTANCE & DETAIL ── */
+.mode-tile-dist {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: auto; /* Pushes content to the bottom of the equal-height tile */
+  padding-top: 10px;
+  width: 100%;
+}
+
+.mode-dist-value,
+.mode-time-value {
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: var(--muted);
+  display: block;
+  opacity: 0.8;
+}
+
+.mode-tile-detail {
+  margin-top: 8px;
+  font-size: 0.58rem;
+  color: var(--muted);
+  line-height: 1.3;
+  padding: 6px 8px;
+  background: rgba(59,130,246,0.03);
+  border: 1px solid rgba(59,130,246,0.06);
+  border-radius: 4px;
+  text-align: left;
+}
 
 /* ── SCROLLBAR ── */
 ::-webkit-scrollbar       { width: 6px; height: 6px; }

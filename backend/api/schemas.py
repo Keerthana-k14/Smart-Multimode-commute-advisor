@@ -13,9 +13,24 @@ class PredictResponse(BaseModel):
     road: str
     recommended_mode: str
     car_time: float
+    bike_time: float
     metro_time: float
     bus_time: float
     explanation: str
+
+class DistanceRequest(BaseModel):
+    source: str
+    destination: str
+    time_of_day: str = "default"  # morning | afternoon | evening | default
+
+class DistanceResponse(BaseModel):
+    source: str
+    destination: str
+    distance_km: float
+    source_coords: list
+    dest_coords: list
+    modes: dict
+    recommended: str
 
 class FeedbackRequest(BaseModel):
     area: str

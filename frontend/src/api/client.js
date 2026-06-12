@@ -6,7 +6,9 @@ const API = axios.create({
 });
 
 export const getRoutes    = ()        => API.get("/routes");
+export const getMapConfig = ()        => API.get("/config/map");
 export const getPredict   = (data)    => API.post("/predict", data);
+export const getDistance   = (data)    => API.post("/distance", data);
 export const postFeedback = (data)    => API.post("/feedback", data);
 
 export default API;

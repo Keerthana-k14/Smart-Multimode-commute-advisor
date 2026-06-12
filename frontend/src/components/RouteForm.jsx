@@ -12,13 +12,32 @@ const DAY_OPTIONS = [
   { value: "weekend", label: "Weekend", icon: "🏖" },
 ];
 
-// Bangalore location suggestions
+// 50+ Bangalore location suggestions (matches backend KNOWN_LOCATIONS)
 const SUGGESTIONS = [
-  "Koramangala", "Indiranagar", "Whitefield", "MG Road",
-  "Hebbal", "Electronic City", "Jayanagar", "JP Nagar",
-  "Marathahalli", "HSR Layout", "Bannerghatta Road",
-  "Yeshwanthpur", "Rajajinagar", "Malleshwaram",
-  "BTM Layout", "Bellandur", "Sarjapur Road"
+  // Central
+  "MG Road", "Brigade Road", "Majestic", "Shivajinagar", "Ulsoor",
+  "Cubbon Park", "Richmond Town",
+  // East
+  "Indiranagar", "Domlur", "Koramangala", "HSR Layout", "BTM Layout",
+  "Bellandur", "Sarjapur Road", "Marathahalli", "Whitefield",
+  "HAL", "Old Airport Road", "Varthur", "Kadugodi", "Kadugodi Tree Park", 
+  "Hopefarm", "Kr Puram", "Mahadevapura",
+  // South
+  "Jayanagar", "JP Nagar", "Bannerghatta Road", "Electronic City",
+  "Silk Board", "Bommanahalli", "Basavanagudi", "Banashankari",
+  "Kumaraswamy Layout", "Kanakapura Road", "Uttarahalli", "Arekere",
+  "Wilson Garden", "Lalbagh",
+  // North
+  "Hebbal", "Yeshwanthpur", "Rajajinagar", "Malleshwaram",
+  "Sadashivanagar", "Yelahanka", "Thanisandra", "Nagawara",
+  "Rt Nagar", "Banaswadi", "Hennur", "Kalyan Nagar",
+  // West
+  "Vijayanagar", "Basaveshwaranagar", "Nagarbhavi", "Kengeri",
+  "Peenya", "Magadi Road", "Mysore Road", "Rr Nagar", "Nayandahalli",
+  // Outer / IT Corridors
+  "Hosur Road", "Tumkur Road", "Outer Ring Road", "Devanahalli",
+  "Kempegowda Airport", "Hoskote", "Anekal", "Begur", "Hulimavu",
+  "Jp Nagar 6Th Phase", "Gottigere", "Konanakunte"
 ];
 
 function LocationInput({ label, marker, value, onChange, placeholder }) {

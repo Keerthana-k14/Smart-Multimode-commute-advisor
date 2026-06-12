@@ -21,52 +21,46 @@ def apply_dynamic_adjustments(times: dict, tod: int, congestion_norm: float, con
     adjusted = {}
     
     # Mode-specific congestion factors (multipliers for delay)
-    # Car: highly affected, Bus: moderately affected, Metro: minimally affected
-    CONG_FACTORS = {'car': 0.8, 'bus': 0.5, 'metro': 0.1}
+    # Car: affected, Bike: low-medium affected, Bus: affected, Metro: minimal
+    CONG_FACTORS = {'car': 0.4, 'bike': 0.2, 'bus': 0.3, 'metro': 0.05}
     
-    # Peak hour multiplier for road-based modes (Evening peak: 5 PM - 9 PM)
-    is_evening_peak = 1 if tod == 2 else 0 # 2 is 'evening' in our map
-    TOD_NAMES = {0: "MORNING", 1: "AFTERNOON", 2: "EVENING"}
-    
-    print(f"\n--- Dynamic Adjustment Debug [{TOD_NAMES.get(tod, 'UNKNOWN')} | {congestion_label.upper()} CONG] ---")
+    # Peak hour multiplier for road-based modes 
+    is_evening_peak = 1 if tod == 2 else 0 
     
     for mode in ['car', 'metro', 'bus']:
         base_time = times[f'{mode}_time']
         
-        # 1. Congestion impact (delay is proportional to congestion %)
+        # 1.1 Congestion impact
         cong_delay = base_time * congestion_norm * CONG_FACTORS[mode]
         
-        # 2. User Experience (UX) delay - proportional to congestion
-        ux_delay = 0
-        if mode in ['car', 'bus']:
-            ux_delay = base_time * (congestion_norm ** 1.5) * 0.5 
+        # 1.2 UX delay (small nudge)
+        ux_delay = base_time * (congestion_norm ** 2) * 0.1
             
-        # 3. Peak hour multiplier for road-based modes
+        # 1.3 Peak hour multiplier (toned down to match target ~55m for 17km)
         peak_multiplier = 1.0
         if is_evening_peak and mode in ['car', 'bus']:
-            peak_multiplier = 1.5 if mode == 'car' else 1.3
+            peak_multiplier = 1.25 if mode == 'car' else 1.2
             
-        # 4. Morning optimization (favoring car/two-wheeler)
+        # 1.4 Morning optimization
         morning_factor = 1.0
-        if tod == 0 and mode == 'car': # 0 is 'morning'
-            morning_factor = 0.7 
+        if tod == 0 and mode == 'car':
+            morning_factor = 0.85 
             
-        # Compute final adjusted time
         adjusted_time = (base_time + cong_delay + ux_delay) * peak_multiplier * morning_factor
-        
         adjusted[f'{mode}_time'] = round(adjusted_time, 1)
-        
-        print(f"Mode: {mode.upper()}")
-        print(f"  Base Time: {base_time} min")
-        print(f"  Total Adjustment: {round(adjusted_time - base_time, 1)} min")
-        print(f"  FINAL ADJUSTED: {adjusted[f'{mode}_time']} min")
+
+    # 2. Derive BIKE time (Target ~0.8 of car time)
+    adjusted['bike_time'] = round(adjusted['car_time'] * 0.8, 1)
+
+    # Debug logs
+    for mode in ['car', 'bike', 'bus', 'metro']:
+        print(f"Mode: {mode.upper()} -> FINAL: {adjusted[f'{mode}_time']} min")
         
     print("----------------------------------------------------------\n")
     return adjusted
 
 def get_prediction(time_of_day: str, day_type: str, congestion: str = "medium", distance_km: float = 10.0) -> dict:
     # Pattern-Aware: Auto-infer congestion level from time_of_day
-    # User no longer enters this; it's predicted automatically.
     mapping = {"morning": "low", "afternoon": "medium", "evening": "high"}
     assigned_congestion = mapping.get(time_of_day, "medium")
     

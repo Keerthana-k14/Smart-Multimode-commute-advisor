@@ -21,6 +21,8 @@ def build_explanation(best_mode: str, times: dict, time_of_day: str, congestion:
     # Recommendation reason
     if mode == "metro":
         lines.append(f"Metro is unaffected by road congestion and saves {saved} min vs the slowest option.")
+    elif mode == "bike":
+        lines.append(f"Two-wheeler is the most efficient road option, weaving through traffic and saving {saved} min.")
     elif mode == "car":
         lines.append(f"Roads are clear enough that car is the fastest, saving {saved} min.")
     elif mode == "bus":
@@ -28,8 +30,8 @@ def build_explanation(best_mode: str, times: dict, time_of_day: str, congestion:
 
     # Times breakdown
     lines.append(
-        f"Estimated times → Car: {times['car_time']} min | "
-        f"Metro: {times['metro_time']} min | Bus: {times['bus_time']} min."
+        f"Estimated times → Car: {times['car_time']}m | Bike: {times['bike_time']}m | "
+        f"Metro: {times['metro_time']}m | Bus: {times['bus_time']}m."
     )
 
     return " ".join(lines)
